@@ -1,6 +1,8 @@
 package org.launchcode.controllers;
 
+
 import org.launchcode.models.Category;
+import org.launchcode.models.Menu;
 import org.launchcode.models.data.CategoryDao;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -12,45 +14,34 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 import javax.validation.Valid;
 
-
 @Controller
-@RequestMapping("category")
+@RequestMapping(value="category")
 public class CategoryController {
-
     @Autowired
     private CategoryDao categoryDao;
 
-    @RequestMapping(value = "")
-    public String index(Model model) {
-
+    @RequestMapping(value="")
+    public String index(Model model){
+        model.addAttribute("title","Category");
         model.addAttribute("categories", categoryDao.findAll());
-        model.addAttribute("title", "My Categories");
-
-
         return "category/index";
     }
 
-    @RequestMapping(value = "add", method = RequestMethod.GET)
-    public String displayAddForm(Model model) {
+    @RequestMapping(value = "/add",method = RequestMethod.GET)
+    public String add(Model model){
         model.addAttribute("title", "Add Category");
         model.addAttribute(new Category());
-
         return "category/add";
     }
 
-    @RequestMapping(value = "add", method = RequestMethod.POST)
-    public String processAddForm(Model model,
-                                 @ModelAttribute @Valid Category category,
-                                 Errors errors) {
-
+    @RequestMapping(value = "/add", method = RequestMethod.POST)
+    public String processAdd(Model model, @ModelAttribute @Valid Category newCategory, Errors errors){
         if(errors.hasErrors()){
+            model.addAttribute("title", "Add Category");
             return "category/add";
         }
 
-        categoryDao.save(category);
-        return ("redirect:");
-
+        categoryDao.save(newCategory);
+        return "redirect:/category";
     }
-
-
 }
