@@ -1,15 +1,12 @@
-package org.launchcode.models.data;
+package org.alyssanoble.models.data;
 
-import org.launchcode.models.Cheese;
+import org.alyssanoble.models.Ticket;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 
 import javax.transaction.Transactional;
 
-/**
- * Created by LaunchCode
- */
 @Repository
 @Transactional
-public interface CheeseDao extends CrudRepository<Cheese, Integer> {
+public interface TicketDao extends CrudRepository<Ticket, Integer> {
 }

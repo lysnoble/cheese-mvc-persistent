@@ -1,22 +1,20 @@
-package org.launchcode.models;
+package org.alyssanoble.models;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import java.util.List;
 
-/**
- * Created by LaunchCode
- */
+
 @Entity
-public class Cheese {
+public class Ticket {
 
     @Id
     @GeneratedValue
     private int id;
 
     @NotNull
-    @Size(min=3, max=15)
+    @Size(min=3, max=100)
     private String name;
 
     @NotNull
@@ -26,15 +24,15 @@ public class Cheese {
     @ManyToOne
     private Category category;
 
-    @ManyToMany(mappedBy = "cheeses")
+    @ManyToMany(mappedBy = "tickets")
     private List<Menu> menus;
 
-    public Cheese(String name, String description) {
+    public Ticket(String name, String description) {
         this.name = name;
         this.description = description;
     }
 
-    public Cheese() { }
+    public Ticket() { }
 
     public int getId() {
         return id;
@@ -56,15 +54,11 @@ public class Cheese {
         this.description = description;
     }
 
+    public Category getCategory() {
+        return category;
+    }
+
     public void setCategory(Category category) {
         this.category = category;
-    }
-
-    public Category getCategory() {
-        return this.category;
-    }
-
-    public boolean isMyCategory(Category category){
-        return this.category.equals(category);
     }
 }

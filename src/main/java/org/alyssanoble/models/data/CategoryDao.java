@@ -1,6 +1,6 @@
-package org.launchcode.models.data;
+package org.alyssanoble.models.data;
 
-import org.launchcode.models.Category;
+import org.alyssanoble.models.Category;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 

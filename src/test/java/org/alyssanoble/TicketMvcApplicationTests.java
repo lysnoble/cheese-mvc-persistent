@@ -1,4 +1,4 @@
-package org.launchcode;
+package org.alyssanoble;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -7,7 +7,7 @@ import org.springframework.test.context.junit4.SpringRunner;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest
-public class CheeseMvcApplicationTests {
+public class TicketMvcApplicationTests {
 
 	@Test
 	public void contextLoads() {

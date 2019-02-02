@@ -13,7 +13,7 @@
 <h4 th:if="${categories} and ${categories.size()}">Categories</h4>
 <ul th:if="${categories} and ${categories.size()}">
     <li th:each="category : ${categories}">
-        <a th:href="'/cheese/category/'+${category.id}" th:text="${category.name}"></a>
+        <a th:href="'/ticket/category/'+${category.id}" th:text="${category.name}"></a>
     </li>
 </ul>
 </body>

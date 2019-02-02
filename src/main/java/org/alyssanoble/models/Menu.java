@@ -1,4 +1,4 @@
-package org.launchcode.models;
+package org.alyssanoble.models;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -21,7 +21,7 @@ public class Menu {
     private String name;
 
     @ManyToMany
-    List<Cheese> cheeses = new ArrayList<>();
+    List<Ticket> tickets = new ArrayList<>();
 
     public int getId() {
         return id;
@@ -36,12 +36,12 @@ public class Menu {
         this.name = name;
     }
 
-    public List<Cheese> getCheeses() {
-        return cheeses;
+    public List<Ticket> getTickets() {
+        return tickets;
     }
 
-    public void addMenuItem(Cheese cheese) {
-        this.cheeses.add(cheese);
+    public void addMenuItem(Ticket ticket) {
+        this.tickets.add(ticket);
     }
 
     public Menu(@NotNull String name) {

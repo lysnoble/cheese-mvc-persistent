@@ -1,14 +1,12 @@
-package org.launchcode.controllers;
+package org.alyssanoble.controllers;
 
 
-import org.launchcode.models.Category;
-import org.launchcode.models.Cheese;
-import org.launchcode.models.Menu;
-import org.launchcode.models.data.CheeseDao;
-import org.launchcode.models.data.MenuDao;
-import org.launchcode.models.forms.AddMenuItemForm;
+import org.alyssanoble.models.Ticket;
+import org.alyssanoble.models.Menu;
+import org.alyssanoble.models.data.TicketDao;
+import org.alyssanoble.models.data.MenuDao;
+import org.alyssanoble.models.forms.AddMenuItemForm;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.Errors;
@@ -16,8 +14,6 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 import javax.validation.constraints.NotNull;
-import java.util.ArrayList;
-import java.util.List;
 
 @Controller
 @RequestMapping(value = "menu")
@@ -26,7 +22,7 @@ public class MenuController {
     MenuDao menuDao;
 
     @Autowired
-    CheeseDao cheeseDao;
+    TicketDao ticketDao;
 
     @RequestMapping(value = "",method = RequestMethod.GET)
     public String index(Model model){
@@ -66,8 +62,8 @@ public class MenuController {
     @RequestMapping(value="/add-item/{id}", method = RequestMethod.GET)
     public String addMenuItem(Model model,@PathVariable int id){
         Menu menu = menuDao.findOne(id);
-        Iterable<Cheese> cheeses = cheeseDao.findAll();
-        AddMenuItemForm menuItemForm = new AddMenuItemForm(menu,cheeses);
+        Iterable<Ticket> tickets = ticketDao.findAll();
+        AddMenuItemForm menuItemForm = new AddMenuItemForm(menu,tickets);
         if(menu != null){
             model.addAttribute("title","Add item to menu: " + menu.getName());
             model.addAttribute("menuItemForm", menuItemForm);
@@ -89,8 +85,8 @@ public class MenuController {
             model.addAttribute("menuItemForm", menuItemForm);
             return "menu/add-item";
         }
-        Cheese cheese = cheeseDao.findOne(menuItemForm.getCheeseId());
-        menu.addMenuItem(cheese);
+        Ticket ticket = ticketDao.findOne(menuItemForm.getTicketId());
+        menu.addMenuItem(ticket);
         menuDao.save(menu);
         return "redirect:/menu/menudetails/"+menu.getId();
     }

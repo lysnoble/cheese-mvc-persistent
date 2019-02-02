@@ -1,7 +1,4 @@
-package org.launchcode.models;
-
-import org.launchcode.models.data.CheeseDao;
-import org.springframework.beans.factory.annotation.Autowired;
+package org.alyssanoble.models;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
@@ -22,7 +19,7 @@ public class Category {
 
     @OneToMany
     @JoinColumn(name="category_id")
-    List<Cheese> cheeses = new ArrayList<>();
+    List<Ticket> tickets = new ArrayList<>();
 
     public int getId() {
         return id;
@@ -43,6 +40,6 @@ public class Category {
         this.name = name;
     }
 
-    public List<Cheese> getCheeses(){return cheeses;}
+    public List<Ticket> getTickets (){return tickets;}
 
 }
